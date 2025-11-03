@@ -37,7 +37,7 @@ app.use("/", resetPasswordRoute);
 
 const swaggerDocument = YAML.load("./docs.yml");
 
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+//app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(GlobalErrorHandling);
 export default app;
