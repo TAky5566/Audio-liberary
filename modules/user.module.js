@@ -101,4 +101,4 @@ let AudioSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-const AudioModel = mongoose.model("Audio", AudioSchema);
+export const AudioModel = mongoose.model("Audio", AudioSchema);

@@ -1,7 +1,7 @@
 import express from "express";
 import {
   loginValidators,
-  regristValidators,
+  registerValidators,
   verifyValidators,
   authenticate,
   AuthorizeRole,
@@ -9,7 +9,7 @@ import {
   resetPasswordValidators,
 } from "../middlewares/auth.middleware.js";
 import { login } from "../controllers/login.controller.js";
-import { regrist } from "../controllers/regrist.ccontroller.js";
+import { register } from "../controllers/register.controller.js";
 import { verify } from "../controllers/verify.controller.js";
 import {
   forgotPassword,
@@ -18,7 +18,7 @@ import {
 const router = express.Router();
 
 const loginRoute = router.post("/login", loginValidators, login);
-const regrisRoute = router.post("/regrist", regristValidators, regrist);
+const registerRoute = router.post("/register", registerValidators, register);
 const verifyRoute = router.put("/verify/:token", verifyValidators, verify);
 const Dashboard = router.get("/dashboard", authenticate, (req, res) => {
   res.send("hello", req.user.username);
@@ -34,11 +34,4 @@ const resetPasswordRoute = router.put(
   resetPassword
 );
 
-export {
-  loginRoute,
-  regrisRoute,
-  verifyRoute,
-  Dashboard,
-  forgotPasswordRoute,
-  resetPasswordRoute,
-};
+export { router };

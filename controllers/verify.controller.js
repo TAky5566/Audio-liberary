@@ -29,7 +29,7 @@ export default async function verify(req, res, next) {
       user.VerifyState.isVerified = true;
       await user.save();
 
-      res.status(200).JSON(
+      res.status(200).json(
         new SuccessResponse(true, "verification success", {
           nextRoute: "/login",
         }).JSON()

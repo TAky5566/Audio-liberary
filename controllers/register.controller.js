@@ -2,12 +2,13 @@ import { UserModel } from "../modules/user.module.js";
 import bcrypt from "bcrypt";
 import { AppError, SuccessResponse } from "../utils/response.utils.js";
 import { sendVerificationEmail } from "../utils/sendEmail.utils.js";
-export default async function regrist(req, res, next) {
+
+export default async function register(req, res, next) {
   try {
     const { email, password, username } = req.body;
 
-    let isExsist = await UserModel.findOne({ email }).lean();
-    if (isExsist) {
+    let isExist = await UserModel.findOne({ email }).lean();
+    if (isExist) {
       throw new AppError(
         "Email is Already in Use",
         "EmailReuse",
@@ -32,12 +33,13 @@ export default async function regrist(req, res, next) {
     await user.save();
 
     res.status(200).json(
-      new SuccessResponse(true, "regrist success and email verification sent", {
-        nextRoute: "/auth/resend",
+      new SuccessResponse(true, "registration success and email verification sent", {
+        
       }).JSON()
     );
   } catch (err) {
     next(err);
   }
 }
-export { regrist };
+
+export { register };

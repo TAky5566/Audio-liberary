@@ -15,7 +15,7 @@ let loginValidators = [
   HandleErrors,
 ];
 
-let regristValidators = [
+let registerValidators = [
   body("email")
     .trim()
     .toLowerCase()
@@ -107,7 +107,6 @@ const authenticate = async (req, res, next) => {
         "header",
         401
       ).JSON();
-      
     }
 
     const decoded = tokenCheck(token);
@@ -121,7 +120,6 @@ const authenticate = async (req, res, next) => {
         "header",
         401
       ).JSON();
-      
     }
     req.user = user;
     next();
@@ -134,7 +132,7 @@ function AuthorizeRole(role) {
   return (req, res, next) => {
     if (!req.user) {
       next(
-       new AppError("User not found", "Unauthorized", "header", 401).JSON()
+        new AppError("User not found", "Unauthorized", "header", 401).JSON()
       );
       return;
     }
@@ -147,7 +145,6 @@ function AuthorizeRole(role) {
           403
         ).JSON()
       );
-      
     }
     next();
   };
@@ -155,7 +152,7 @@ function AuthorizeRole(role) {
 
 export {
   loginValidators,
-  regristValidators,
+  registerValidators,
   verifyValidators,
   authenticate,
   AuthorizeRole,

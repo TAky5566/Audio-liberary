@@ -68,7 +68,7 @@ npm test
 ## API Routes
 
 - `/login` - User login
-- `/regrist` - User registration
+- `/register` - User registration
 - `/verify/:token` - Email verification
 - `/forgetPassword` - Password reset request
 - `/resetPassword/:token` - Password reset
